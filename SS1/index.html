@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // API,Promise,async-await,Callback 
+        // method: GET, POST, PUT, DELETE, PATCH - HTTP/HTTPS
+        // -> Giao thức để client giao tiếp với server thông qua API 
+        const BASE_URL = "https://6367c73fedc85dbc84db832b.mockapi.io"
+
+        // API cho contact list
+        // Method GET
+
+        // Cách 1
+        fetch(BASE_URL + "/ContactList") // Promise - Dữ liệu cần đợi để xử lí 
+        .then(response => response.json())  // Promise - Dữ liệu cần đợi để xử lí 
+        .then(data => {
+            // Sử dụng dữ liệu trong đây
+            console.log(data)
+        })
+
+        // Cách 2
+        async function fetchData() {
+            let response = await fetch(BASE_URL + "/ContactList")
+            let data = await response.json()
+
+            console.log(data)
+        }
+        fetchData()
+
+        // BTVN
+        // 1. Tìm hiểu Promise ***
+        // 2. asynchonous
+
+    </script>
+</body>
+</html>
