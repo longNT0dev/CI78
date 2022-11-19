@@ -1,7 +1,7 @@
 import JobItem from "./JobItem";
 
 function JobList(props) {
-//   props.list.push("Thử xem");
+
   return (
     <ul>
       {/* props */}

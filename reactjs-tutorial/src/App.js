@@ -1,14 +1,10 @@
-import Input from "./Input.jsx";
-import JobList from "./JobList.jsx";
-import Footer from "./Footer.jsx";
+import SS2 from "./SS2/SS2";
 
 function App() {
-  const lists = ["Ăn", "Ngủ", "Chơi"];
+ 
   return (
     <div className="App">
-      <Input></Input>
-      <JobList list={lists}></JobList>
-      <Footer list={lists}></Footer>
+      <SS2></SS2>
     </div>
   );
 }
