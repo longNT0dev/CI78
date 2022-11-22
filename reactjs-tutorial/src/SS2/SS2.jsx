@@ -7,7 +7,16 @@ function SS2() {
   // Khai báo 1 state (thuộc tính của component)
   // Tại sao không khai báo 1 biến thông thường mà lại dùng state ??
   // State giúp reactjs xác định được component nào được cập nhật
-  const [list, setList] = useState(["Ăn", "Ngủ", "Chơi"]);
+
+  // State đơn giản
+  // const [list, setList] = useState(["Ăn", "Ngủ", "Chơi"]);
+
+  // State giúp đánh dấu công việc hoàn thành
+  const [list, setList] = useState([
+    { value: "Ăn", status: "incomplete" },
+    { value: "Ngủ", status: "complete" },
+    { value: "Chơi", status: "incomplete" },
+  ]);
 
   const handleAddNewJob = () => {
     // console.log("Trước khi cập nhật", list);
@@ -23,8 +32,8 @@ function SS2() {
 
   return (
     <>
-      <Input setList={setList}></Input>
-      <JobList list={list}></JobList>
+      <Input handleChangeListJob={setList}></Input>
+      <JobList list={list} setList={setList}></JobList>
       <Footer list={list}></Footer>
       <button onClick={handleAddNewJob}>Add new job</button>
     </>

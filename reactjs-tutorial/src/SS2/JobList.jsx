@@ -1,18 +1,30 @@
 import JobItem from "./JobItem";
 
 function JobList(props) {
+  const handleChangeStatus = (id, currentStatus) => {
+    console.log("hizzz");
+    if (currentStatus === "complete") {
+      props.list[id].status = "incomplete";
+    } else {
+      props.list[id].status = "complete";
+    }
+
+    console.log(...props.list);
+
+    props.setList(() => [...props.list]);
+  };
 
   return (
     <ul>
-      {/* props */}
-      {/* <JobItem job="Review lesson" something="Một thứ gì đó" smt1={true} smt2="smt2" smt3="smt3" ></JobItem> */}
-
-      {/* Render List  */}
-
       {
         // Trong đây là code js
         props.list.map((list, i) => (
-          <JobItem job={list} key={`Job ${i}`}></JobItem>
+          <JobItem
+            status={list.status}
+            job={list.value}
+            key={`Job ${i}`}
+            handleChangeStatus={handleChangeStatus(i, list.status)}
+          ></JobItem>
         ))
       }
     </ul>

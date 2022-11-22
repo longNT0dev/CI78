@@ -1,6 +1,6 @@
 function Footer({list}) {
   return (
-    <div style={{backgroundColor: 'red', color: 'blue' }}>
+    <div>
       <span>{list.length} tabs left</span>
       <span>Mindx todolist</span>
     </div>
