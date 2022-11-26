@@ -13,29 +13,46 @@ function SS2() {
 
   // State giúp đánh dấu công việc hoàn thành
   const [list, setList] = useState([
-    { value: "Ăn", status: "incomplete" },
-    { value: "Ngủ", status: "complete" },
-    { value: "Chơi", status: "incomplete" },
+    { id: 0, value: "Ăn", status: "incomplete" },
+    { id: 1, value: "Ngủ", status: "complete" },
+    { id: 2, value: "Chơi", status: "incomplete" },
   ]);
 
-  const handleAddNewJob = () => {
-    // console.log("Trước khi cập nhật", list);
-    // const cloneList = [...list]
-    // cloneList.push("Đi học")
-    // setList(() => cloneList);
-
-    setList((prev) => [...prev, "Đi học"]); // prefer
-    //Cập nhật object Object.assign
+  // Thêm 1 job mới vào
+  const handleAddNewJob = (newJob) => {
+    setList((prev) => [
+      ...prev,
+      { id: prev.length + 1, value: newJob, status: "incomplete" },
+    ]);
   };
 
-  console.log("Sau khi cập nhật", list);
+  // Đổi trạng thái công việc
+  const handleToggleStatus = (id) => {
+    setList((prevList) =>
+      prevList.map((listItem) => {
+        if (listItem.id === id) {
+          return {
+            ...listItem,
+            status:
+              listItem.status === "incomplete" ? "complete" : "incomplete",
+          };
+        }
+
+        return listItem;
+      })
+    );
+  };
+
+  // Lấy giá số lượng còn lại chưa làm
+  const getLeftJob = () => {
+    return list.filter((listItem) => listItem.status === "incomplete").length;
+  };
 
   return (
     <>
-      <Input handleChangeListJob={setList}></Input>
-      <JobList list={list} setList={setList}></JobList>
-      <Footer list={list}></Footer>
-      <button onClick={handleAddNewJob}>Add new job</button>
+      <Input addNewJob={handleAddNewJob}></Input>
+      <JobList list={list} toggleStatus={handleToggleStatus}></JobList>
+      <Footer leftJob={getLeftJob()}></Footer>
     </>
   );
 }

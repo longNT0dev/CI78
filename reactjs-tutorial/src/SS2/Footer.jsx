@@ -1,7 +1,7 @@
-function Footer({list}) {
+function Footer({ leftJob }) {
   return (
     <div>
-      <span>{list.length} tabs left</span>
+      <span>{leftJob} tabs left</span>
       <span>Mindx todolist</span>
     </div>
   );

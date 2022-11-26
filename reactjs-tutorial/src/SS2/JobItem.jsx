@@ -1,18 +1,12 @@
 // destructring
 import "./JobItem.css";
-function JobItem(props) {
-  // const handleChangeStatus = () => {
-  //   console.log("hello guys")
-  // }
+function JobItem({ todo, toggleStatus }) {
   return (
     <li
-      className="job-item"
-      style={{
-        backgroundColor: `${props.status === "complete" ? "red" : "blue"}`,
-      }}
-      onClick={props.handleChangeStatus}
+      className={todo.status === "complete" ? "job-item-done" : ""}
+      onClick={() => toggleStatus(todo.id)}
     >
-      {props.job}
+      {todo.value}
     </li>
   );
 }

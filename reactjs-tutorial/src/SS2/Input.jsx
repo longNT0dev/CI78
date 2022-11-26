@@ -1,21 +1,13 @@
 import { useState } from "react";
 
-function Input({ handleChangeListJob }) {
+function Input({ addNewJob }) {
   const [newJob, setNewJob] = useState("");
-  // console.log("hello", newJob);
 
   const handleChange = (event) => {
     // Xử lí sự kiện thay đổi giá trị trong ô input
     // console.log(event.target.value);
 
     setNewJob(event.target.value);
-  };
-
-  const createNewJob = () => {
-    // console.log("Create new", newJob);
-    handleChangeListJob((prev) => [...prev, newJob]);
-
-    setNewJob("");
   };
 
   const handleKeydown = (event) => {
@@ -33,7 +25,7 @@ function Input({ handleChangeListJob }) {
         onChange={(e) => handleChange(e)}
         // onKeyDown={(e) => handleKeydown(e)}
       />
-      <button onClick={createNewJob}>dfdfdf</button>
+      <button onClick={() => addNewJob(newJob)}>Thêm công việc mới</button>
     </>
   );
 }
