@@ -3,7 +3,7 @@ import "./JobItem.css";
 function JobItem({ todo, toggleStatus }) {
   return (
     <li
-      className={todo.status === "complete" ? "job-item-done" : ""}
+      className={todo.status}
       onClick={() => toggleStatus(todo.id)}
     >
       {todo.value}
