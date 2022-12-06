@@ -17,3 +17,5 @@ function JobList({ list, toggleStatus }) {
 }
 
 export default JobList;
+
+// prop drilling

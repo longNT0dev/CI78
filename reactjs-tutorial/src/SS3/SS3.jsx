@@ -1,4 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import {
+  LANGUAGE_CONTEXT,
+} from "./LanguageContextProvider";
+import { useIntl } from "react-intl";
 
 const COLOR_INDICATOR = {
   "-1": "black",
@@ -12,6 +17,10 @@ function SS3() {
     new Array(paragraph.length).fill(-1)
   );
 
+  const { setLang } = useContext(LANGUAGE_CONTEXT);
+
+  const intl = useIntl();
+
   const handleCheckWord = (event) => {
     // if(event.target.value == ' ') {
     //   console.log("Đây là dấu cách")
@@ -24,39 +33,40 @@ function SS3() {
     for (let i = currentInput.length; i < paragraph.length; i++) {
       cloneCheckWord[i] = -1;
     }
-   
+
     setCheckWord(cloneCheckWord);
     // Lấy giá trị event.target.value so sánh với paragraph
     // Nếu bằng = 1
     // Nếu không bằng = 0
 
     for (let i in currentInput) {
-      if (paragraph[i] == currentInput[i]) {
-        setCheckWord((prev) =>
-          prev.map((word, j) => {
-            if (i == j) {
-              return 1;
-            }
-            return word;
-          })
-        );
-      } else {
-        setCheckWord((prev) =>
-          prev.map((word, j) => {
-            if (i == j) {
-              return 0;
-            }
-            return word;
-          })
-        );
-      }
+      setCheckWord((prev) =>
+        prev.map((word, j) =>
+          i == j ? (paragraph[i] == currentInput[i] ? 1 : 0) : word
+        )
+      );
     }
+
+    // if (paragraph[i] == currentInput[i]) {
+
+    // } else {
+    //   setCheckWord((prev) =>
+    //     prev.map((word, j) => {
+    //       if (i == j) {
+    //         return 0;
+    //       }
+    //       return word;
+    //     })
+    //   );
+    // }
+    // }
   };
 
   return (
     <>
       <textarea cols="30" rows="10" onChange={handleCheckWord}></textarea>
       <p>
+        h1
         {paragraph.split("").map((word, i) => (
           <span
             style={{
@@ -67,6 +77,10 @@ function SS3() {
           </span>
         ))}
       </p>
+      <button onClick={() => setLang('en')}>Tiếng Anh</button>
+      <button onClick={() => setLang('vi')}>Tiếng Việt</button>
+      <button>{intl.formatMessage({ id: "start" })}</button>
+      <span>{intl.formatMessage({ id: "isValidPassw" })}</span>
     </>
   );
 
