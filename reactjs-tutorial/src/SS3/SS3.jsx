@@ -81,6 +81,7 @@ function SS3() {
       <button onClick={() => setLang('vi')}>Tiếng Việt</button>
       <button>{intl.formatMessage({ id: "start" })}</button>
       <span>{intl.formatMessage({ id: "isValidPassw" })}</span>
+      {/* Tạo thêm các component khác và sử dụng context thử  */}
     </>
   );
 
